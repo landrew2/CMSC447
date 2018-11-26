@@ -1,0 +1,276 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:700);
+@import url(https://fonts.googleapis.com/css?family=Poiret+One);
+
+
+
+
+body {
+
+    
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-image: url('../img/ITE.jpg');
+
+
+    background-position: absolute;
+    font-family: Arial, Helvetica, sans-serif;
+    background-attachment:fixed;
+    justify-content: center;
+
+}    
+
+h1 { 
+    
+    font-family: Helvetica, Arial, Helvetica, sans-serif;
+    font-size: 20px; 
+    text-align: center;
+    line-height: 40px; 
+    margin: 0;  
+    border-style: solid;
+    border-radius: 25px;
+}
+  
+h2 { 
+    font-size: 14px; 
+    text-align: center;
+    line-height: 30px; 
+    margin: 0; 
+    padding: 0; 
+}
+
+h3{
+
+    font-size: 12px; 
+    text-align: center;
+    line-height: 30px; 
+    margin: 0px; 
+    padding: 10px; 
+        
+}
+
+.radio-toolbar label{
+
+    font-size:12px;
+    /*font-family: Sans Serif;*/
+    margin-top:-5px;
+
+
+}
+
+.field {
+    
+    margin-top: -6px;
+    /*margin-bottom: 12px;*/
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    /*
+    text-decoration: underline;
+    background-color: #FFF;*/
+    
+}
+
+.form {
+
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    color: #000;
+    background-color: #FFF;
+    margin:0 auto;
+    padding: 20px 20px 20px;
+    position: relative;
+    width: 300px;
+    top:0; right:0; left:0; bottom:0;
+
+}
+
+input[type="search"]{
+
+    border: solid #808080;
+    border-radius: 50px;
+    height: 33px;
+    width: 265px;
+    padding: 5px 5px;
+    /*text-align: center;*/
+    vertical-align: bottom;
+}
+
+input[type="email"]{
+
+    border: solid #808080;
+    border-radius: 50px;
+    height: 18px;
+    width: 250px;
+    padding: 5px 5px;
+    /*text-align: center;*/
+}
+
+input[type="search"]:focus{
+
+
+    border: solid  #FF3B3F;;
+}
+
+input[type="email"]:focus{
+
+    border: solid  #FF3B3F;;
+}
+
+/*properties of submit button*/
+input[type="submit"]{
+
+    margin-top: 10px;
+    border-radius: 8px;
+    /*background-color: #FF3B3F;*/
+    background-color: #808080;
+    cursor:pointer;
+    border:0px;
+    height: 25px;
+    width: 60px;
+    text-align:center;
+    color: white;
+    
+}
+
+input.search{
+    background-image:url(../img/musica-searcher.png);
+    background-repeat: no-repeat;
+    background-position: 22px 5px;
+    background-size: 15px;
+    margin-top: 30px;
+    border: none;
+    height: 25px;
+    width: 60px;
+
+
+}
+
+input.home{
+
+    background-image:url(../img/home.png);
+    background-repeat: no-repeat;
+    background-position: 25px 5px;
+    background-size: 15px;
+    margin-top: 2px;
+    border: none;
+    height: 25px;
+    width: 65px;
+    title: search;
+    padding:0px;
+    
+}
+
+input.group{
+    
+    background-image:url(../img/group.png);
+    background-repeat: no-repeat;
+    background-position: 5px 5px;
+    background-size: 20px;
+    margin-top:-10px;
+    margin-bottom: 10px;
+    border: none;
+    height: 30px;
+    width: 150px;
+    padding: 0px;
+    color: white;
+    
+
+}
+
+input.indiv{
+
+    background-image:url(../img/user.png);
+    background-repeat: no-repeat;
+    background-position: 5px 5px;
+    background-size: 20px;
+    margin-top: -10px;
+    border: none;
+    height: 30px;
+    width: 150px;
+    text-position: center;
+    padding:0px;
+    color: white;
+    
+    
+
+}
+/*changed color of submit button on hover*/
+input[type="submit"]:hover{
+    background-color: #FF3B3F;
+}
+
+.button[type="menu"]{
+    background-color: #483D8B;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    height: 25px;
+    overflow: visible;
+    padding: 0 12px;
+    margin: 5px auto 0;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 200px;
+    -moz-appearance: none;
+    -moz-border-radius: 4px;
+    -webkit-appearance: none;
+    -webkit-border-radius: 4px;
+    line-height: 25px;
+}
+
+
+
+.button:hover{
+
+    background-color:  #7c71c1;
+    /*background-color: #483D8B;*/
+
+}
+
+.nextButton {
+
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+#advisor
+{
+    margin-left: 2.5%;
+}
+
+#bullets
+{
+    margin-left: 4.5%;
+}
+
+.group {
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    color: #000;
+    background-color: #FFF;
+    margin: 100px auto 0;
+    padding: 3% 2% 2%;
+    position: relative;
+    width: 330px;
+}
+
+.groupBullet {
+
+    text-align:left;
+}
+
+
+#button {
+    width: 30em;
+    height: 50em;
+}
+
+
+

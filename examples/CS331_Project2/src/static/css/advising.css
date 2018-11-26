@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+#createNewAppointmentButton {
+    margin-top: 12px;
+}
+
+.event {
+    background-color: black;
+    height: 16px;
+    width: 16px;
+}
