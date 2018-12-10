@@ -1,4 +1,4 @@
 <?php
 
-header("Location: createEvent/createEvent.html");
+header("Location: createEvent/createEvent.php");
 

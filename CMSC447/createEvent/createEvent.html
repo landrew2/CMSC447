@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../Libraries/popper.min.js"></script>
+    <script src="../Libraries/jquery-3.3.1.js"></script>
+    <script src="createEvent.js"></script>
     <title>Emergency</title>
 
 </head>
@@ -11,65 +14,90 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="col-sm-8" style="border:solid">
                 <h2>Need help?</h2>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="nameText">Name:</span>
+                <form action="createEvent.php">
+                    <!-- name -->
+                    <div class="form-group">
+                        <label for="nameInput">Name:</label>
+                        <input type="text" class="form-control" id="nameInput" aria-describedby="nameInput" placeholder="Enter name"
+                           name="name" required>
                     </div>
-                    <input type="text" class="form-control" aria-label="Name">
-                </div>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="streetText">Street Address:</span>
+
+                    <!-- street address -->
+                    <div class="form-group">
+                        <label for="streetInput">Street address:</label>
+                        <input type="text" class="form-control" id="streetInput" aria-describedby="streetInput"
+                            placeholder="Enter street address">
                     </div>
-                    <input type="text" class="form-control" aria-label="Name">
-                </div>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="cityText">City:</span>
+
+                    <!-- City -->
+                    <div class="form-group">
+                        <label for="cityInput">City:</label>
+                        <input type="text" class="form-control" id="cityInput" aria-describedby="cityInput" placeholder="Enter City">
                     </div>
-                    <input type="text" class="form-control" aria-label="Name">
-                </div>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="stateText">State:</span>
+
+                    <!-- State -->
+                    <div class="form-group">
+                        <label for="stateInput">State:</label>
+                        <input type="text" class="form-control" id="stateInput" aria-describedby="stateInput"
+                            placeholder="Enter State">
                     </div>
-                    <input type="text" class="form-control" aria-label="Name">
-                </div>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="zipText">Zip Code:</span>
+
+                    <!-- Zip Code -->
+                    <div class="form-group">
+                        <label for="zipCodeInput">Zip Code:</label>
+                        <input type="text" class="form-control" id="zipCodeInput" aria-describedby="zipCodeInput"
+                            placeholder="Enter Zip Code">
                     </div>
-                    <input type="text" class="form-control" aria-label="Name">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" for="emergencyTypeSelect">Options</label>
+
+                    <!-- Event type -->
+                    <div class="form-group">
+                        <label for="eventTypeSelect">Emergency Type:</label>
+                        <select class="form-control" id="eventTypeSelect" required>
+                            <option>Water</option>
+                            <option>Fire</option>
+                            <option>Crime</option>
+                            <option>General</option>
+                        </select>
                     </div>
-                    <select class="custom-select" id="emregencyType">
-                        <option selected>Choose...</option>
-                        <option value="1">Crime</option>
-                        <option value="2">Water</option>
-                        <option value="3">Fire</option>
-                        <option value="3">General</option>
-                    </select>
+
+                    <!-- Description -->
+                    <div class="form-group">
+                        <label for="descriptionInput">Description</label>
+                        <textarea class="form-control" id="descriptionInput" rows="3" placeholder="Please describe your emergency"
+                            required></textarea>
+                    </div>
+                </form>
+                <h5>Contact information - Please fill out at least one of the following fields:</h5>
+                <!-- Contact info phone and/or email -->
+                <div class="form-group">
+                    <label for="phoneInput">Contact Phone:</label>
+                    <input type="tel" class="form-control" id="phoneInput" aria-describedby="phoneInput" placeholder="Enter phone number">
                 </div>
-                <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">Description:</span>
-                        </div>
-                        <textarea class="form-control" aria-label="Description:"></textarea>
-                      </div>
+
+                <div class="form-group">
+                    <label for="emailInput">Contact Email Address:</label>
+                    <input type="email" class="form-control" id="emailInput" aria-describedby="emailInput" placeholder="Enter email address">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-            <div class="col">
+            <div class="col-4" style="border:solid">
                 <h2>log in stuff</h2>
+                <h5>Emergency Responder?</h5>
+                <form>
+                    <div class="form-row align-items-center">
+                        <input type="text" class="form-control " id="emergencyResponderLogin" placeholder="Login ID">
+                        <button id="emergencyResponderLoginButton" class="btn btn-success" type="submit">Sign in</button>
+                    </div>
+                </form>
+                <h5>911 Operator?</h5>
+                <input type="text" class="form-control" id="911OperatorLogin" placeholder="Login ID">
+                <button id="911operatorLoginButton" class="btn btn-success" type="submit">Sign in</button>
             </div>
         </div>
     </div>
 
-    <script src="../Libraries/popper.min.js"></script>
-    <script src="../Libraries/jquery-3.3.1.js"></script>
     <link rel="stylesheet" href="../Libraries/bootstrap-4.1.3-dist/css/bootstrap.min.css">
     <script src="../Libraries/bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
 </body>
