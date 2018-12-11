@@ -2,9 +2,6 @@
 ini_set('display_errors', 1);
 include('dbConnect.php');
 
-function test(){
-echo "Potato";
-}
 //gerneral format for set queries
 function addEvent($name,$address,$emergencyType,$description,$email,$phone,$priority){
 	//initializes connection
@@ -46,6 +43,36 @@ function addEvent($name,$address,$emergencyType,$description,$email,$phone,$prio
 	//close the db connection
 	$connection->close();
 	return;
+}
+
+//checks the login for the 911 operator
+function operatorLogin($loginID){
+	$connection = ConnectToDatabase();
+
+	$query = "SELECT * FROM 911_OPERATORS WHERE	login =$loginID";
+
+	$results = $connection->query($query);
+
+	if (mysqli_num_rows($results) == 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+// checks the login for the emergency responder
+function responderLogin($loginID){
+	$connection = ConnectToDatabase();
+
+	$query = "SELECT * FROM EMERGENCY_RESPONDERS WHERE login =$loginID";
+
+	$results = $connection->query($query);
+
+	if (mysqli_num_rows($results) == 0) {
+        return false;
+    } else {
+        return true;
+    }
 }
 
 // function getEvent(/*query params*/){

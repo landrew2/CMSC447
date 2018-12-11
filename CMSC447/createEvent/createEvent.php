@@ -1,7 +1,10 @@
 <?
 ini_set('display_errors', 1);
+
+session_start(); 
+
 include '../dbUtils/queries.php';
-session_start();   
+var_dump($_SESSION);
 if ($_POST) {
     //echo $_POST['name'];
     //echo $_POST['emergencyType'];
@@ -19,6 +22,10 @@ if ($_POST) {
     //not logged in as either
      if ( (!isset($_SESSION['operator'])|| !$_SESSION['operator']) &&  (!isset($_SESSION['responder']) || !$_SESSION['responder'])){
        header('Location: ../success.html');
+     }
+     elseif($_SESSION['operator'])
+     {
+        header('Location: ../911Operator/operatorHome/operatorHome.html');
      }
 }
 
@@ -123,19 +130,27 @@ if ($_POST) {
                 <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
-            <div class="col-4" style="border:solid">
-                <h2>log in stuff</h2>
-                <h5>Emergency Responder?</h5>
-                <form>
-                    <div class="form-row align-items-center">
-                        <input type="text" class="form-control " id="emergencyResponderLogin" placeholder="Login ID">
-                        <button id="emergencyResponderLoginButton" class="btn btn-success" type="submit">Sign in</button>
-                    </div>
-                </form>
-                <h5>911 Operator?</h5>
-                <input type="text" class="form-control" id="911OperatorLogin" placeholder="Login ID">
-                <button id="911operatorLoginButton" class="btn btn-success" type="submit">Sign in</button>
-            </div>
+
+            <?php
+             if (!isset($_SESSION['operator']) || !$_SESSION['operator']){
+                echo '
+                <div class="col-4" style="border:solid">
+                    <h2>log in stuff</h2>
+                    <h5>Emergency Responder?</h5>
+                    <form action="responderLogin.php" method = "POST">
+                        <div class="form-row align-items-center">
+                            <input type="text" class="form-control " id="emergencyResponderLogin" name="emergencyResponderLogin"placeholder="Login ID">
+                            <button id="emergencyResponderLoginButton" class="btn btn-success" type="submit">Sign in</button>
+                        </div>
+                    </form>
+                    <form action="operatorLogin.php" method = "POST">
+                        <h5>911 Operator?</h5>
+                        <input type="text" class="form-control" id="911OperatorLogin" name="911OperatorLogin" placeholder="Login ID">
+                        <button id="911operatorLoginButton" class="btn btn-success" type="submit">Sign in</button>
+                    </form>
+                </div>';
+              }
+              ?>
         </div>
     </div>
 
