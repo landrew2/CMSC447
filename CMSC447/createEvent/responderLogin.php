@@ -11,6 +11,7 @@
     if (responderLogin($loginID)){
         echo "correct"; 
         $_SESSION['responder'] =true;
+        header('Location: ../EmergencyResponder/Profile/profileForm.html');
     }
     else{
         header("Location: createEvent.php");

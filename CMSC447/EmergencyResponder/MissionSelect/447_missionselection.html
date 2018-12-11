@@ -1,0 +1,70 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+    integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+   integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+   crossorigin=""></script>
+   <link rel="stylesheet" type="text/css" href="missionselect.css">
+</head>
+<body onload="loadMap()">
+    <h1>Emergency Response System</h1>
+    <hr>
+    <div id="tabs">
+        <a href="EmergencyResponder/Profile/profileForm.html"><button> Profile </button></a>
+        <a href="EmergencyResponder/ViewUpdate/viewandupdate.html"><button> Current Mission </button></a>
+        <a href="447_missionselection.html"><button> Available Missions </button></a>
+    </div>
+    <br>
+    <br>
+    <hr>
+    <div id="main">
+    <div id="settings">
+        <h2> Available Missions</h2>
+        <label> Zip Code: </label>
+        <input type="text" id="zip"/>
+        <label> Radius: </label>
+        <select id="distance">
+            <option value="5"> 5 mi </option>
+            <option value="10"> 10 mi </option>
+            <option value="15"> 15 mi </option>
+            <option value="20"> 20 mi </option>
+            <option value="25"> 25 mi </option>
+        </select>
+        <button onclick="findMissions()">
+           Find Missions!
+        </button>
+        <div id="missionDisplay">
+            missionssssss
+        </div>
+    </div>
+    <div id="mapArea">
+       
+    </div>
+    </div>
+    <script>
+        
+        function loadMap(){
+            var map = L.map('mapArea').setView([39.2557, -76.7110], 13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+        }
+
+        function findMissions(){
+            zipcode = document.getElementById("zip").value;
+            radius = document.getElementById("distance").value;
+            // import
+            import { OpenStreetMapProvider } from 'leaflet-geosearch';
+
+// setup
+            const provider = new OpenStreetMapProvider();
+
+// search
+            const results = await provider.search({ query: "1000 Hilltop Circle Baltimore, MD 21250" });
+            document.getElementById("missionDisplay").innerHTML = results;
+        }
+    </script>
+</body>
+</html>

@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 session_start(); 
 
 include '../dbUtils/queries.php';
-var_dump($_SESSION);
+//var_dump($_SESSION);
 if ($_POST) {
     //echo $_POST['name'];
     //echo $_POST['emergencyType'];
@@ -26,6 +26,10 @@ if ($_POST) {
      elseif($_SESSION['operator'])
      {
         header('Location: ../911Operator/operatorHome/operatorHome.php');
+     }
+     elseif($_SESSION['responder']){
+         header('Location: ../EmergencyResponder/Profile/profileForm.html');
+       
      }
 }
 
