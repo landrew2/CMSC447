@@ -35,8 +35,8 @@ function addEvent($name,$address,$emergencyType,$description,$email,$phone,$prio
 	//id that was created 	
 	$civilianID = $connection->insert_id;
 
-	$addEvent = "INSERT INTO EVENTS(description,location,priority,civilian_id,fire_event,crime_event,water_event,general_event)
-					VALUES('$description','$address','$priority','$civilianID','$fireEvent','$crimeEvent','$waterEvent','$generalEvent')";
+	$addEvent = "INSERT INTO EVENTS(status,description,location,priority,civilian_id,fire_event,crime_event,water_event,general_event)
+					VALUES(0,'$description','$address','$priority','$civilianID','$fireEvent','$crimeEvent','$waterEvent','$generalEvent')";
 
 	$connection->query($addEvent);
 
@@ -75,21 +75,52 @@ function responderLogin($loginID){
     }
 }
 
-// function getEvent(/*query params*/){
-// 	//initialize connection
-// 	$connection = ConnectToDatabase();
+// get all non completed events
+function getEvents(){
+	//initialize connection
+	$connection = ConnectToDatabase();
 
-// 	$queryString = "stuff";
+	$queryString = "SELECT * FROM EVENTS 
+	INNER JOIN CIVILIANS ON EVENTS.civilian_id = CIVILIANS.civilian_id
+	WHERE (status = 0 or status =1) and priority !=0";
 
-// 	//run the query
-// 	$result = $connection->query($queryString);
+	//run the query
+	$result = $connection->query($queryString);
 
-// 	//close the db connection
-// 	$connection->close();
+	//close the db connection
+	$connection->close();
+	
+    $arrayOfDicts = array();
 
-// 	//turn the output 
-// 	return mysqli_fetch_assoc($result);
+    while ($row = $result->fetch_assoc()) {
+        array_push($arrayOfDicts, $row);
+    }
 
-// }
+    return $arrayOfDicts;
+
+}
+
+//get all the  events that were created by civilians that havent been processed by the 911 operator yet
+function getCivilianCreatedEvents(){
+		//initialize connection
+		$connection = ConnectToDatabase();
+
+		$queryString = "SELECT * FROM EVENTS 
+		INNER JOIN CIVILIANS ON EVENTS.civilian_id = CIVILIANS.civilian_id
+		WHERE priority = 0";
+	
+		//run the query
+		$result = $connection->query($queryString);
+	
+		//close the db connection
+		$connection->close();
+		$arrayOfDicts = array();
+
+		while ($row = $result->fetch_assoc()) {
+			array_push($arrayOfDicts, $row);
+		}
+	
+		return $arrayOfDicts;
+}
 
  

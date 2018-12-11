@@ -11,7 +11,7 @@
     if (operatorLogin($loginID)){
         echo "correct";
         $_SESSION['operator'] = true;
-         header("Location: ../911Operator/operatorHome/operatorHome.html");
+         header("Location: ../911Operator/operatorHome/operatorHome.php");
     }
     else{
         header("Location: createEvent.php");

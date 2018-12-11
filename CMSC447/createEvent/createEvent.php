@@ -25,7 +25,7 @@ if ($_POST) {
      }
      elseif($_SESSION['operator'])
      {
-        header('Location: ../911Operator/operatorHome/operatorHome.html');
+        header('Location: ../911Operator/operatorHome/operatorHome.php');
      }
 }
 
