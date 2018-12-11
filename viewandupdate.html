@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>View/Update Mission</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../../general_style.css">
+        <style>
+            /*.container{overflow: hidden}
+            .container2{overflow: hidden} */
+            .tab{float: left;}
+            .tab2{float: center;}
+            .tab-btn{margin: 90px;}
+            button{display:block;margin-bottom: 20px;}
+            tr{transition:all .25s ease-in-out}
+            tr:hover{background-color: #ddd;}
+            
+            body {
+                font-family: Arial;
+                color: black;
+            }
+            .split {
+                height: 100%;
+                width: 50%;
+                position: fixed;
+                z-index: 1;
+                top: 0;
+                overflow-x: hidden;
+                padding-top: 80px;
+            }
+            .left {
+                left: 0;
+            }
+            .right {
+                right: 0;
+            }
+            .centered {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+            }
+        </style>    
+    </head>
+    <body>
+        <h1>Emergency Response System</h1>
+        <hr>
+        <div id="tabs">
+            <a href="../Profile/profileForm.html"><button> Profile </button></a>
+            <a href="viewandupdate.html"><button> Current Mission </button></a>
+            <a href="../MissionSelect/447_missionselection.html"><button> Available Missions </button></a>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <hr>
+        <div class="split left">
+            <h3>My Mission</h3>
+            <div class="tab">
+                <table id="table1" border="1">
+                    <tr>
+                        <th>Complete</th>
+                        <th>Event</th>
+                        <th>Priority</th>
+                        <th>View</th>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="check1"></td>
+                        <td>A1</td>
+                        <td>B1</td>
+                        <td><button onclick="view();">View</button></td>
+                    </tr>
+                     <tr>                        
+                         <td><input type="checkbox" name="check2"></td>
+                        <td>A2</td>
+                        <td>B2</td>
+                        <td><button onclick="view();">View</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="check3"></td>
+                        <td>A3</td>
+                        <td>B3</td>
+                        <td><button onclick="view();">View</button></td>
+                    </tr>
+                     <tr>
+                        <td><input type="checkbox" name="check4"></td>
+                        <td>A4</td>
+                        <td>B4</td>
+                        <td><button onclick="view();">View</button></td>
+                    </tr>
+                </table>
+                <div style = "float:left;">
+                    <button onclick="updateDb();">Update</button>
+                </div>
+                <div style = "float: right;" >
+                    <button onclick="drop();">Drop Mission</button>
+                </div>
+            </div>
+            <body>
+        <div class="split right tab-btn">
+            <div id = "output"></div>
+            <div id = "Event"></div>
+            <div id = "Temp"></div>
+        </div>
+
+        <script>
+            function view(){
+                var div = document.getElementById("output"),
+                    temp = document.getElementById("Tempt");
+                var event = document.getElementById("Event"),
+                    checkboxes = document.getElementsByTagName("input");
+                div.innerHTML = "0";
+                event.innerHTML = "check"+1;
+                for (var i = 0; i < checkboxes.length; i++){
+                    var idx = i+ 1;
+                    temp.innerHTML = "check" + idx;
+                    if (event == temp){
+                        event.innerHTML = "Event: " + idx;
+                    }
+                    else{
+                        event.innerHTML = "you suck";
+                    }
+                }
+            }
+            function updateDb()
+            {
+                var table1 = document.getElementById("table1"),
+                    table2 = document.getElementById("table2"),
+                    checkboxes = document.getElementsByTagName("input")
+            console.log("Val1 = " + checkboxes.length);
+                 for(var i = 0; i < checkboxes.length; i++)
+                     if(checkboxes[i].checked)
+                        {
+                            // remove the transfered rows from the first table [table1]
+                            var index = table1.rows[i+1].rowIndex;
+                            table1.deleteRow(index);
+                            // we have deleted some rows so the checkboxes.length have changed
+                            // so we have to decrement the value of i
+                            i--;
+                           console.log(checkboxes.length);
+                        }
+            }
+        </script>    
+    </body>
+</html>

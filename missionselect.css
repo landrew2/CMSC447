@@ -1,0 +1,17 @@
+@import url("../../general_style.css");
+
+#mapArea{
+    height: 100%;
+    float: right;
+    margin-left: 550px;
+    width: 50%;
+}
+
+#settings{
+    float: left;
+    width: 500px;
+}
+
+#main{
+    width: 100%;
+}
