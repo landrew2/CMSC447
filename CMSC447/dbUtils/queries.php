@@ -123,4 +123,30 @@ function getCivilianCreatedEvents(){
 		return $arrayOfDicts;
 }
 
+function updateEvent($eventID, $status,$priority){
+	//initialize connection
+	$connection = ConnectToDatabase();
+	echo "evnet Id" . $eventID ."thing" ;
+	$queryString = "UPDATE EVENTS
+					SET status = $status, priority = $priority
+					WHERE event_id = $eventID ";
+
+	//run the query
+	$result = $connection->query($queryString);
+	echo("Error description: " . mysqli_error($connection));
+	//close the db connection
+	$connection->close();
+}
  
+function deleteEvent($eventID){
+//initialize connection
+$connection = ConnectToDatabase();
+echo $eventID;	
+$queryString = "DELETE FROM EVENTS WHERE event_id=$eventID";
+
+//run the query
+$result = $connection->query($queryString);
+echo("Error description: " . mysqli_error($connection));
+//close the db connection
+$connection->close();
+}

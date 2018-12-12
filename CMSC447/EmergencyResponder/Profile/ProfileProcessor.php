@@ -1,14 +1,10 @@
 <?php
 
-if(isset($_POST['submit'])){
-$fname = $_POST['fname'];
-$lname = $_POST['lname'];
-$location = $_POST['location'];
+if ($_POST) {
 
+$profile = $_POST['fname'] . " " .$_POST['lname'] . " " .$_POST['location'] 
+. ", " . $_POST['fire'] . ", " . $_POST['crime'] . ", " . $_POST['water']
+ . ", " . $_POST['general situation'];
 
-echo "First Name: ". $fname;  
-echo "<br>";
-echo "Last Name: ". $lname;
-echo "<br>";
-echo "Location: ". $location;
+addProfile($_POST['fname'], $fullStreetAddress,$_POST['emergencyType'],$_POST['description'],$_POST['email'], $_POST['phone'],$priority);
 }

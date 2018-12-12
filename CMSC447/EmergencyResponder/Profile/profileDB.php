@@ -1,51 +1,19 @@
 <?php
-
-$query = "SELECT * FROM Profile";
-$results = $db_connection->query($query);
-
-   
-?>
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Profile</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    </head>
-    <body>
-        <div class="container">
-        <table class='table'>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Location</th>
-                    <th>Abilities</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                 foreach($results as $results){
-                ?>
-                    <tr>
-                     <td><?php echo $results['name']?></td>
-                     <td><?php echo $results['zipcode']?></td>
-                     <td><?php
-                     if($results['abilities'] == fire){
-                         echo "fire";
-                     }elseif($results['abilities'] == water){
-                         echo "water",
-                     }elseif($results['abilities'] == crime){
-                        echo "crime",
-                    }elseif($results['abilities'] == general){
-                        echo "general",
-                    }
-                    ?></td>
-                </tr>
-                <?php
-                }
-                ?>
-            </tbody>
-        </table>
-        </div>
-    </body>
-</html>
+	function ConnectToDatabase() {
+		$dbEndpoint = "goodsamaritans.cqnoxiob8a44.us-east-2.rds.amazonaws.com";	
+		$dbName = "goodsamaritans";
+		$dbUsername = "cmsc447";
+		$dbPassword= "goodsamaritans";
+		$port = 3306;
+		// Create connection
+    	$conn = mysqli_connect($dbEndpoint, $dbUsername, $dbPassword, $dbName, $port);
+    	if (!mysqli_select_db($conn, $dbName)) {
+        	die("Uh oh, couldn't select database $dbName");
+    	}
+    	// Check connection
+	    if ($conn->connect_error) {
+	        die("Connection failed: " . $conn->connect_error);
+	    } else {
+	        return $conn;
+		}
+	}

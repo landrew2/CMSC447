@@ -32,35 +32,54 @@ $civilianEvents = getCivilianCreatedEvents();
             foreach($allEvents as $event){
                 echo "
                     <li class ='list-group-item' id ='allEvent" . $event['event_id']. "'>
-                        <div class = 'row'>
-                            <div class = 'col-4'>
-                                <h4>Priority: " .  $event['priority']. " Status: " . $event['status'] . " </h4>
-                                <p>Name: " . $event['name'] . " Phone: " . $event['phone'] . " Email: ". $event['email'] ."</p>
-                                <p>Address: " . $event['location'] . "</p>
-                                <p>Description: " . $event['description'] . "</p> 
+                        <form action ='deleteEvent.php?eventID=". $event['event_id']. "' method = 'POST'>
+                            <input type='number' name='eventID' value='". $event['event_id']. " ' >
+                            <div class = 'row'>
+                                <div class = 'col-4'>
+                                    <h4>Priority: " .  $event['priority']. " Status: " . $event['status'] . " </h4>
+                                    <p>Name: " . $event['name'] . " Phone: " . $event['phone'] . " Email: ". $event['email'] ."</p>
+                                    <p>Address: " . $event['location'] . "</p>
+                                    <p>Description: " . $event['description'] . "</p> 
+                                </div>
+                                <div class='col-2'>
+                                    <button class='btn btn-danger' type = 'submit'> Delete Event </button>
+                                </div>
                             </div>
-                            <div class='col-2'>
-                                <button class='btn btn-danger'> Delete Event </button>
-                            </div>
-                        </div>
+                        </form>
                     </li>
                 "; 
             }
             ?>
             </ul>
         </div>
-        <div class = "col-6" style="border:solid">
+        <div class = "col-6" style="border:solid">  
             <h3>Pending Events</h3>
             <ul class="list-group">
             <?php
             foreach($civilianEvents as $event){
+                echo $event['event_id'];
                 echo "
                     <li class ='list-group-item' id ='allEvent" . $event['event_id']. "'>
-                        <h4>Priority: " .  $event['priority']. " Status: " . $event['status'] . " </h4>
-                        <p>Name: " . $event['name'] . " Phone: " . $event['phone'] . " Email: ". $event['email'] ."</p>
-                        <p>Address: " . $event['location'] . "</p>
-                        <p>Description: " . $event['description'] . "</p> 
-
+                        <form action='updateEvent.php?eventID=". $event['event_id']. "' method='POST'> 
+                            <h4>Priority: 
+                                    <select name='priority'>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                    </select>
+                                Status: 
+                                    <select name='status'>
+                                        <option value='0'>Pending</option>
+                                        <option value='1'>In Progress</option>
+                                        <option value='2'>Complete</option>
+                                    </select>
+                            </h4>
+                                <p>Name: " . $event['name'] . " Phone: " . $event['phone'] . " Email: ". $event['email'] ."</p>
+                                <p>Address: " . $event['location'] . "</p>
+                                <p>Description: " . $event['description'] . "</p> 
+                                <button type='submit' class='btn btn-success'>Update Event</button>
+                        </form> 
                     </li>
                 ";     
             }
