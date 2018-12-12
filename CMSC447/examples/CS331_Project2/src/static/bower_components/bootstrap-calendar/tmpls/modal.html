@@ -1,0 +1,84 @@
+<%
+event.date_start = new Date(parseInt(event.start));
+event.date_end = new Date(parseInt(event.end));
+%>
+
+<div class="container">
+    <div id="event-meta">
+        <div>
+            <p>
+                <b>Meeting Type: </b> <%= event.type %>
+            </p>
+
+            <p>
+                <b>Location: </b> <%= event.location %>
+            </p>
+
+            <p>
+                <b>Start:</b> <%= moment(event.date_start).format('MMMM Do YYYY, h:mm:ss a') %>
+            </p>
+            <p>
+                <b>End:</b> <%= moment(event.date_end).format('MMMM Do YYYY, h:mm:ss a')%>
+            </p>
+
+            <form action="./deleteAppointment.php" method="POST">
+                <input name="meetingID" value="<%= event.id %>" hidden>
+                <input type="submit" value="Delete Meeting"
+                       class="btn btn-danger" role="button">
+            </form>
+
+            <div>
+                <b>Students: </b>
+                <ul id="listOfStudents"></ul>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+    var students = "<%= event.students %>";
+    var meetingID = "<%= event.id %>";
+
+    function processStudent(student) {
+
+        var studentInfo =
+            student.fName + " " +
+            student.lName + " | " +
+            student.email + " | " +
+            student.campusID;
+
+        $("#listOfStudents").append(
+            $("<li>").append(
+                studentInfo
+            )
+        )
+    }
+
+    $.ajax({
+        url: './getStudentInfo.php',
+        type: 'POST',
+
+        data: {
+            'meetingID': meetingID
+        },
+
+        success: function (data, status) {
+
+            var parsedData = JSON.parse(data);
+            var students = parsedData.result;
+
+            students.forEach(function (student) {
+                processStudent(student);
+            })
+
+        },
+        error: function (xhr, desc, err) {
+            console.log(xhr);
+            console.log(err);
+        }
+    });
+
+
+</script>

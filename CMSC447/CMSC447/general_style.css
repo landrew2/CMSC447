@@ -1,0 +1,19 @@
+body {
+    background-color: lightblue;
+}
+
+h1{
+    background-color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+#tabs{
+    float: left;
+    text-align: center;
+}
+
+button{
+    height: 30px;
+    width: 150px;
+}

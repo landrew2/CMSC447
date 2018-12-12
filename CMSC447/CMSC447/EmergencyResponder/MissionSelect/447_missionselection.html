@@ -1,0 +1,122 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+    integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+   integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+   crossorigin=""></script>
+   <link rel="stylesheet" type="text/css" href="missionselect.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body onload="loadMap()">
+    <h1>Emergency Response System</h1>
+    <hr>
+    <div id="tabs">
+        <a href="../Profile/profileForm.html"><button> Profile </button></a>
+        <a href="../ViewUpdate/viewandupdate.html"><button> Current Mission </button></a>
+        <a href="447_missionselection.html"><button> Available Missions </button></a>
+    </div>
+    <br>
+    <br>
+    <hr>
+    <div id="main">
+    <div id="settings">
+        <h2> Available Missions</h2>
+        <label> Zip Code: </label>
+        <input type="text" id="zip"/>
+        <label> Radius: </label>
+        <select id="distance">
+            <option value="5"> 5 mi </option>
+            <option value="10"> 10 mi </option>
+            <option value="15"> 15 mi </option>
+            <option value="20"> 20 mi </option>
+            <option value="25"> 25 mi </option>
+        </select>
+        <button onclick="findMissions()">
+            Find Missions!
+        </button>
+        <div id="missionDisplay">
+        </div>
+    </div>
+    <div id="mapArea">
+       
+    </div>
+    </div>
+    <script>
+        
+        function loadMap(){
+            var map = L.map('mapArea').setView([39.2557, -76.7110], 13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+        }
+
+        function findMissions(){
+            zipcode = document.getElementById("zip").value;
+            radius = document.getElementById("distance").value;
+            var missions = "";
+          /*  $(document).ready(function(){
+                var input = "1000 Hilltop Circle Baltimore, MD 21250";
+            $.getJSON('https://nominatim.openstreetmap.org/search?format=json&limit=5&q=' + input, function(result){
+                $.each(result, function(i, field){
+                    items.push( field.lat);
+                    items.push(field.lon );
+                });
+                var marker = L.marker([items[0], items[1]]).addTo(map);
+            });
+            input = "909 Walker Ave Catonsville, MD 21228";
+            $.getJSON('https://nominatim.openstreetmap.org/search?format=json&limit=5&q=' + input, function(result){
+                $.each(result, function(i, field){
+                    items.push(field.lat);
+                    items.push(field.lon);
+                });
+                var marker2 = L.marker([items[0], items[1]]).addTo(map);
+            });
+        });
+        for(var i = 0; i < items.length; i++){
+                console.log(items[i]);
+         }*/
+         var xmlhttp = new XMLHttpRequest();
+         xmlhttp.open("GET", "getmissions.php");
+         xmlhttp.send();
+         var response = '';
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                response = xmlhttp.responseText;
+                response = JSON.parse(response);
+                missions += "<form action='somefunction(selectedmission)'>";
+            for (var i = 0; i < response.length; i++){
+                var eventid = response[i].eventid;
+                var description = response[i].description;
+                var address = response[i].location;
+                var priority = response[i].priority;
+                var name = response[i].name;
+                var type = "";
+                if(response[i].fire_event == 1){
+                    type = "fire";
+                }
+                if(response[i].water_event == 1){
+                    type = "water";
+                }
+                if(response[i].crime_event == 1){
+                    type = "crime";
+                }
+                if(response[i].general_event == 1){
+                    type = "general";
+                }
+                missions += "<input type='checkbox' name='event" + (i+1) + "'> Name: " + 
+                name + "<br> Address: " + address + 
+                "<br> Priority: " + priority + "<br> Description: " + description + 
+                "<br> Type: " + type + "<br> ID: " + eventid + "<br>";
+            }
+            missions += "<input type='submit' value='Select Mission'> </form>";
+            document.getElementById("missionDisplay").innerHTML = missions;
+            }
+        };
+           /* var marker = L.marker([items[0], items[1]]).addTo(map);
+            var marker2 = L.marker([items[2], items[3]]).addTo(map);*/
+        }
+    </script>
+</body>
+</html>

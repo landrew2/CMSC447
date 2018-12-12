@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Student Registration</title>
+
+    <link rel="icon" type="image/x-icon" href="../static/img/umbc.png"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/student.css"/>
+</head>
+
+<body>
+
+
+<div class="form">
+    <h1>Welcome to CNMS Advising!</h1>
+
+    <br>
+
+    <h2>Please Enter Information to Register</h3>
+
+        <br>
+
+        <form action="register.php" method="post" name="SignIn">
+
+            <div class="field">
+                <label for="tfFName">First Name</label><br><br>
+                <input id="tfFName" type="search" size="30" maxlength="25" name="tfFName" required autofocus
+                       placeholder="John">
+            </div>
+
+            <br>
+
+            <div class="field">
+                <label for="tfLName">Last Name</label><br><br>
+                <input id="tfLName" type="search" size="30" maxlength="25" name="tfLName" required placeholder="Doe">
+            </div>
+
+            <br>
+
+            <div class="field">
+                <label for="tfID">Student ID</label><br><br>
+                <input id="tfID" type="search" size="30" maxlength="7" pattern="[A-Za-z]{2}[0-9]{5}" title="AB12345"
+                       placeholder="JD12345" name="tfID" required>
+            </div>
+
+            <br>
+
+            <div class="field">
+                <label for="tfEmail">Email</label><br><br>
+                <input id="tfEmail" type="email" size="30" maxlength="25" pattern="^\w+@umbc\.edu"
+                       title="student1@umbc.edu"
+                       name="tfEmail" placeholder="johndoe@umbc.edu" required>
+            </div>
+
+            <br>
+
+            <div class="field">
+                <label for="ddMajor">Major</label><br><br>
+                <select id="ddMajor" name="ddMajor" required>
+                    <option value="" disabled selected>Select a major...</option>
+                    <option value="Biochemistry & Molecular Biology [BS]">Biochemistry & Molecular Biology [BS]</option>
+                    <option value="Bioinformatics & Computational Biology [BS]">Bioinformatics & Computational Biology
+                        [BS]
+                    </option>
+                    <option value="Biological Sciences [BA]">Biological Sciences [BA]</option>
+                    <option value="Biological Sciences [BS]">Biological Sciences [BS]</option>
+                    <option value="Biology Education [BA]">Biology Education [BA]</option>
+                    <option value="Chemistry [BA]">Chemistry [BA]</option>
+                    <option value="Chemistry [BS]">Chemistry [BS]</option>
+                    <option value="Chemistry Education [BA]">Chemistry Education [BA]</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <br>
+
+            <div class="nextButton">
+                <input type="submit" class="large selection button" value="Register" name="Sign In">
+            </div>
+
+            <h3><a href="login.php"><em>Already Registered? Log in here!</em></a></h3>
+
+        </form>
+
+</div>
+</body>
+</html>
