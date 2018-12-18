@@ -3,8 +3,6 @@
 <html>
     <head>
         <title>View/Update Mission</title>
-        <link rel="stylesheet" type="text/css" href="../../general_style.css">
-
         <meta charset="windows-1252">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <h1>Emergency Response System</h1>
@@ -14,8 +12,8 @@
             .container2{overflow: hidden} */
             .tab{float: left;}
             .tab2{float: center;}
-            .tab-btn{margin: 30px;}
-            /*button{display:block;margin-bottom: 20px;}*/
+            .tab-btn{margin: 90px;}
+            button{display:block;margin-bottom: 20px;}
             tr{transition:all .25s ease-in-out}
             tr:hover{background-color: #ddd;}
             
@@ -52,12 +50,7 @@
         </style>    
     </head>
     <body>
-        <div id="tabs">
-                <a href="../Profile/profileForm.html"><button> Profile </button></a>
-                <a href="viewandupdate.html"><button> Current Mission </button></a>
-                <a href="../MissionSelect/447_missionselection.html"><button> Available Missions </button></a>
-            </div>
-        <div class="split left tab-btn">
+        <div class="split left">
             <h3>My Mission</h3>
             <div class="tab">
                 <table id="table1" border="1">
@@ -69,26 +62,26 @@
                     </tr>
                     <tr>
                         <td><input type="checkbox" name="check1"></td>
-                        <td>1</td>
-                        <td>2</td>
+                        <td>A1</td>
+                        <td>B1</td>
                         <td><button onclick="view();">View</button></td>
                     </tr>
                      <tr>                        
                          <td><input type="checkbox" name="check2"></td>
-                        <td>2</td>
-                        <td>4</td>
+                        <td>A2</td>
+                        <td>B2</td>
                         <td><button onclick="view();">View</button></td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" name="check3"></td>
-                        <td>3</td>
-                        <td>1</td>
+                        <td>A3</td>
+                        <td>B3</td>
                         <td><button onclick="view();">View</button></td>
                     </tr>
                      <tr>
                         <td><input type="checkbox" name="check4"></td>
-                        <td>4</td>
-                        <td>4</td>
+                        <td>A4</td>
+                        <td>B4</td>
                         <td><button onclick="view();">View</button></td>
                     </tr>
                 </table>

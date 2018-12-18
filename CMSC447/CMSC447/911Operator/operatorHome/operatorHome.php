@@ -33,6 +33,7 @@ $civilianEvents = getCivilianCreatedEvents();
                 echo "
                     <li class ='list-group-item' id ='allEvent" . $event['event_id']. "'>
                         <form action ='deleteEvent.php?eventID=". $event['event_id']. "' method = 'POST'>
+                            <input type='number' name='eventID' value='". $event['event_id']. " ' >
                             <div class = 'row'>
                                 <div class = 'col-4'>
                                     <h4>Priority: " .  $event['priority']. " Status: " . $event['status'] . " </h4>

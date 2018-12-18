@@ -126,7 +126,7 @@ function getCivilianCreatedEvents(){
 function updateEvent($eventID, $status,$priority){
 	//initialize connection
 	$connection = ConnectToDatabase();
-	//echo "evnet Id" . $eventID ."thing" ;
+	echo "evnet Id" . $eventID ."thing" ;
 	$queryString = "UPDATE EVENTS
 					SET status = $status, priority = $priority
 					WHERE event_id = $eventID ";
@@ -136,7 +136,7 @@ function updateEvent($eventID, $status,$priority){
 	echo("Error description: " . mysqli_error($connection));
 	//close the db connection
 	$connection->close();
-}	
+}
  
 function deleteEvent($eventID){
 //initialize connection
@@ -149,32 +149,4 @@ $result = $connection->query($queryString);
 echo("Error description: " . mysqli_error($connection));
 //close the db connection
 $connection->close();
-}
-
-function groupEvents(){
-	$connection = ConnectToDatabase();
-
-	//check num of events 
-	$eventsNum = "SELECT * FROM EVENTS WHERE grouped = FALSE";
-	$results = $connection->query($eventsNum);
-	//only groups if there are exactly 4 not grouped
-	if (mysqli_num_rows($results) == 4){
-		$eventIDs = array();
-		while ($row = $$eventsNum->fetch_assoc()) {
-			array_push($eventIDs, $row);
-		}
-			//create new mission 
-		$createMission = "INSERT INTO MISSION(event1,event2,event3,event4,status)
-										VALUES($eventIDs[0]['event_id'],$eventIDs[1]['event_id'],$eventIDs[2]['event_id'],$eventIDs[3]['event_id'],0)";
-		$connection->query($createMission);
-			//update events as grouped 
-		$updateEvent = "";
-		foreach($eventIDs as $eventID){
-			$updateEvent = "UPDATE EVENTS
-							SET grouped = TRUE
-							WHERE event_id = $eventID[event_id]";
-			$connection->query($createMission);
-		}
-	}
-		$connection->close();
 }

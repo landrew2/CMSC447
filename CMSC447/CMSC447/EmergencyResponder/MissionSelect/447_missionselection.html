@@ -44,9 +44,9 @@
     </div>
     </div>
     <script>
-        var map;
+        
         function loadMap(){
-            map = L.map('mapArea').setView([39.2557, -76.7110], 13);
+            var map = L.map('mapArea').setView([39.2557, -76.7110], 13);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
@@ -81,12 +81,11 @@
          xmlhttp.open("GET", "getmissions.php");
          xmlhttp.send();
          var response = '';
-         var marker;
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 response = xmlhttp.responseText;
                 response = JSON.parse(response);
-                missions += "<form>";
+                missions += "<form action='somefunction(selectedmission)'>";
             for (var i = 0; i < response.length; i++){
                 var eventid = response[i].eventid;
                 var description = response[i].description;
@@ -111,23 +110,12 @@
                 "<br> Priority: " + priority + "<br> Description: " + description + 
                 "<br> Type: " + type + "<br> ID: " + eventid + "<br>";
             }
-            missions += "<input type='submit' value='Select Mission' onclick='sendMission()> </form>";
+            missions += "<input type='submit' value='Select Mission'> </form>";
             document.getElementById("missionDisplay").innerHTML = missions;
             }
         };
-        }
-
-        function sendMission(){
-            var allInputs = document.getElementsByTagName("input");
-            var selectedMission = "";
-            for(var i = 0; i < allInputs.length; i++){
-                if(allInputs[i].getAttribute("type") == "checkbox"){
-                    if(allInputs[i].checked == true){
-                        selectedMission = allInputs[i].getAttribute("name");
-                    }
-                }
-            }
-            window.location("../ViewUpdate/viewandupdate.html");
+           /* var marker = L.marker([items[0], items[1]]).addTo(map);
+            var marker2 = L.marker([items[2], items[3]]).addTo(map);*/
         }
     </script>
 </body>

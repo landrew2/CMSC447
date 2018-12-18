@@ -18,7 +18,7 @@ if ($_POST) {
     // echo $fullStreetAddress;
         //test();
     addEvent($_POST['name'], $fullStreetAddress,$_POST['emergencyType'],$_POST['description'],$_POST['email'], $_POST['phone'],$priority);
-    groupEvents();
+    
     //not logged in as either
      if ( (!isset($_SESSION['operator'])|| !$_SESSION['operator']) &&  (!isset($_SESSION['responder']) || !$_SESSION['responder'])){
        header('Location: ../success.html');
